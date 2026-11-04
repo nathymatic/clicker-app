@@ -1,3 +1,4 @@
+import path from "node:path";
 import { app, BrowserWindow } from "electron";
 
 async function createWindow() {
@@ -6,7 +7,11 @@ async function createWindow() {
     height: 700,
   });
 
-  await window.loadURL("http://localhost:5173");
+  if (app.isPackaged) {
+    await window.loadFile(path.join(app.getAppPath(), "dist", "index.html"));
+  } else {
+    await window.loadURL("http://localhost:5173");
+  }
 }
 
 app.whenReady().then(async () => {

@@ -16,7 +16,9 @@ module.exports = {
       name: "@electron-forge/maker-deb",
       config: {},
     },
-    new (require("electron-forge-maker-appimage").MakerAppImage)({}),
+    new (require("electron-forge-maker-appimage").MakerAppImage)({
+      publish: null,
+    }),
   ],
   plugins: [
     {
